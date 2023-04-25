@@ -8,15 +8,17 @@ function App() {
 
   const handleClick = async (event) => {
     setIsLoading(true)
+
     const res = await fetch("https://meowfacts.herokuapp.com/")
-    const data = await res.json()
+    const { data } = await res.json()
     setQuote(data)
+
     setIsLoading(false)
   }
 
   return (
     <Container>
-      <button data-testid="button" onClick={e => handleClick(e)}>
+      <button data-testid="button" onClick={handleClick}>
         <span>get a fact</span>
       </button>
       {isLoading || quote === '' ? 
